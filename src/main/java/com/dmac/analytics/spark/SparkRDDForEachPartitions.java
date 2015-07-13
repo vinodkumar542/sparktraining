@@ -5,12 +5,11 @@ import java.util.Iterator;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.Function;
-import org.apache.spark.storage.StorageLevel;
+import org.apache.spark.api.java.function.FlatMapFunction;
+import org.apache.spark.api.java.function.VoidFunction;
 
-public class SparkRDDMap {
-
+public class SparkRDDForEachPartitions {
 	public static void main(String args[]) {
 
 		SparkConf sparkConfig = new SparkConf()
@@ -22,7 +21,8 @@ public class SparkRDDMap {
 
 		// 5 is the number of partitions
 		JavaRDD<String> rdd = javaSparkContext.textFile("file:///Users/tester/ac/entitlement_view.csv", 5);
-		
+	
+
 
 		JavaRDD<LicenseCountDataObject> lcRDD = rdd.map(new Function<String, LicenseCountDataObject>() {
 									
@@ -36,38 +36,17 @@ public class SparkRDDMap {
 														}
 													});
 		
-
-		//lcRDD.foreach(z -> System.out.println(z.getId()));
-
 		
+		lcRDD.foreachPartition(new VoidFunction<Iterator<LicenseCountDataObject>>() {
+			
+			@Override
+			public void call(Iterator<LicenseCountDataObject> t) throws Exception {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		javaSparkContext.close();
 	}
 }
 
-
-class LicenseCountDataObject {
-	
-	private String id = "";
-	
-	private String licenseCount = "";
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getLicenseCount() {
-		return licenseCount;
-	}
-
-	public void setLicenseCount(String licenseCount) {
-		this.licenseCount = licenseCount;
-	}
-	 
-	
-
-}

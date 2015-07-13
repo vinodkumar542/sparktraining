@@ -1,17 +1,14 @@
 package com.dmac.analytics.spark;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.spark.Accumulator;
 import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.Function;
-import org.apache.spark.storage.StorageLevel;
+import org.apache.spark.broadcast.Broadcast;
 
-public class SparkRDDParallelize {
+public class SparkAccumulatorReckoner {
 
 	public static void main(String args[]) {
 
@@ -21,22 +18,26 @@ public class SparkRDDParallelize {
 						
 		
 		JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConfig);
-
+		
 		
 		List<LatLong> locationList = new ListSource().retrieveList();
 		
 		
 		// RDD can be calculated from an existing collection.
 		JavaRDD<LatLong> locRDD = javaSparkContext.parallelize(locationList);
-
-		locRDD.collect().forEach(z -> System.out.println(z.getId()));
 		
+		
+		Accumulator<Integer> accumulator = javaSparkContext.accumulator(55);
+		
+		 Broadcast<LatLong> bc = javaSparkContext.broadcast(new LatLong("", "", "", ""));
+		 
+		 bc.getValue();
+		 
+		//accumulator.setValue(new Integer(22));
+		accumulator.add(new Integer(33));
+		
+		
+		System.out.println(accumulator.value());
 		javaSparkContext.close();
 	}
 }
-
-
-
-
-
-
