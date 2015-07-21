@@ -27,6 +27,7 @@ public class SparkRDDCheckPointing {
 		JavaRDD<LatLong> distinctRDD = locRDD.distinct();
 		
 		
+		distinctRDD.checkpoint();
 		distinctRDD.foreach((z) -> System.out.println(z.getId()));
 	}
 }

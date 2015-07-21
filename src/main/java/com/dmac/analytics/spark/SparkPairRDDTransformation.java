@@ -66,7 +66,7 @@ public class SparkPairRDDTransformation {
 		});
 		
 		
-		pairRDD.foreach((z) -> System.out.println(z._1.intValue() + " - " + z._2.getId()));
+		pairRDD.foreach((z) -> System.out.println(z._1.intValue() + " - " + z._2.getName()));
 		
 		javaSparkContext.close();
 	}

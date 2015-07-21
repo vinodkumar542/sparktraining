@@ -8,6 +8,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.storage.StorageLevel;
+import com.dmac.analytics.spark.LicenseCountDataObject;
 
 public class SparkRDDMap {
 
@@ -46,28 +47,3 @@ public class SparkRDDMap {
 }
 
 
-class LicenseCountDataObject {
-	
-	private String id = "";
-	
-	private String licenseCount = "";
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getLicenseCount() {
-		return licenseCount;
-	}
-
-	public void setLicenseCount(String licenseCount) {
-		this.licenseCount = licenseCount;
-	}
-	 
-	
-
-}
