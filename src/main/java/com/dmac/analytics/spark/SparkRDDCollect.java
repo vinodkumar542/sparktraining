@@ -1,5 +1,7 @@
 package com.dmac.analytics.spark;
 
+import java.util.List;
+
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -22,7 +24,9 @@ public class SparkRDDCollect {
 		JavaRDD<String> rdd = javaSparkContext.textFile("file:///Users/tester/ac/entitlement_view.csv");
 		
 
-		rdd.collect().forEach(z -> System.out.println(z));
+		List<String> listOfRows = rdd.collect();
+		
+		listOfRows.forEach(z -> System.out.println(z));
 	
 		
 		// To shutdown the spark

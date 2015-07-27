@@ -15,14 +15,15 @@ public class SparkRDDMap {
 	public static void main(String args[]) {
 
 		SparkConf sparkConfig = new SparkConf()
+						.set("spark.local.dir", "/Users/tester/whitetiger")
 						.setAppName("ReadCSVFile")
-						.setMaster("local[5]");
+						.setMaster("local[8]");
 						
 		
 		JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConfig);
 
 		// 5 is the number of partitions
-		JavaRDD<String> rdd = javaSparkContext.textFile("file:///Users/tester/ac/entitlement_view.csv", 5);
+		JavaRDD<String> rdd = javaSparkContext.textFile("file:///Users/tester/ac/entitlement_view.csv");
 		
 
 		JavaRDD<LicenseCountDataObject> lcRDD = rdd.map(new Function<String, LicenseCountDataObject>() {
@@ -38,11 +39,13 @@ public class SparkRDDMap {
 													});
 		
 
-		//lcRDD.foreach(z -> System.out.println(z.getId()));
+		lcRDD.foreach(z -> System.out.println(z.getId()));
 
 		
 		
 		javaSparkContext.close();
+		javaSparkContext.stop();
+		
 	}
 }
 

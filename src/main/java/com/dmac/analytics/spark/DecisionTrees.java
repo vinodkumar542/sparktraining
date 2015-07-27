@@ -1,8 +1,11 @@
 package com.dmac.analytics.spark;
 
 import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.mllib.regression.LabeledPoint;
 import org.apache.spark.mllib.tree.DecisionTree;
+import org.apache.spark.mllib.tree.model.DecisionTreeModel;
 import org.apache.spark.mllib.util.MLUtils;
 
 public class DecisionTrees {
@@ -18,10 +21,18 @@ public class DecisionTrees {
 		
 		
 		JavaSparkContext sc = new JavaSparkContext(sparkConfig);
+		JavaRDD<String> inputData = sc.textFile("/Users/tester/golf.csv");
 		
+		inputData.foreach(z -> System.out.println(z));
 		//MLUtils.de
 		
-		//DecisionTree.trainClassifier(arg0, arg1, arg2, arg3, arg4, arg5)
+		JavaRDD<LabeledPoint> source  = null;
+		String impurity = "gini";
+		int maxDepth = 5;
+		int maxBins = 32;
+		
+		
+		DecisionTreeModel dtm = DecisionTree.trainClassifier(source, 2, null, impurity, maxDepth, maxBins);
 		
 	}
 	

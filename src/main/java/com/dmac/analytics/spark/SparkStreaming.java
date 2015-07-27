@@ -20,21 +20,22 @@ public class SparkStreaming {
 										.setAppName("SparkStreaming")
 										.setMaster("local[5]");
 		
-		JavaStreamingContext jsc = new JavaStreamingContext(sparkConfig, Durations.seconds(1));
+		JavaStreamingContext jsc = new JavaStreamingContext(sparkConfig, Durations.seconds(10));
+				
 		JavaReceiverInputDStream<String> streamOfLines = jsc.socketTextStream("localhost", 5555);
 		
 		JavaDStream<String> dStream = streamOfLines.flatMap(z -> Arrays.asList(z.split(" ")));
 		
-		 JavaPairDStream<String, String> pairDStream = dStream.mapToPair(new PairFunction<String, String, String>() {
+		 JavaPairDStream<String, Integer> pairDStream = dStream.mapToPair(new PairFunction<String, String, Integer>() {
 
 			@Override
-			public Tuple2<String, String> call(String t) throws Exception {
-				System.out.println(t);
-				return new Tuple2<String, String>(t, t);
+			public Tuple2<String, Integer> call(String input) throws Exception {
+				int lengthOfString = input.length();
+				return new Tuple2<String, Integer>(input, new Integer(lengthOfString));
 			}
 		});
 		 
-		 pairDStream.print();
+		pairDStream.print();
 		jsc.start();
 		jsc.awaitTermination();
 		
