@@ -33,7 +33,7 @@ public class SparkPairRDDTransformation {
 		
 		// RDD can be calculated from an existing collection.
 		JavaRDD<LatLong> locRDD = javaSparkContext.parallelize(locationList);
-		
+
 		JavaPairRDD<Integer, LatLong> pairRDD = locRDD.mapToPair(new PairFunction<LatLong, Integer, LatLong>() {
 
 			@Override
@@ -42,6 +42,7 @@ public class SparkPairRDDTransformation {
 			}
 			
 		});
+		
 		
 		JavaPairRDD<Integer, String> flatMapValuesRDD = pairRDD.flatMapValues(new Function<LatLong, Iterable<String>>() {
 
@@ -54,19 +55,18 @@ public class SparkPairRDDTransformation {
 		});
 		
 		
-		//TODO
-		JavaPairRDD<Integer, LatLong> pairRDDB_Key = locRDD.keyBy(new Function<LatLong, Integer>() {
+		JavaPairRDD<Integer, LatLong> pairRDD_KeyBy_ = locRDD.keyBy(new Function<LatLong, Integer>() {
 
 			@Override
 			public Integer call(LatLong v1) throws Exception {
-				// TODO Auto-generated method stub
-				return null;
+				
+				return new Integer(v1.getId());
 			}
 			
 		});
 		
-		
-		pairRDD.foreach((z) -> System.out.println(z._1.intValue() + " - " + z._2.getName()));
+		//pairRDD.foreach((z) -> System.out.println(z._1.intValue() + " - " + z._2.getName()));
+		pairRDD_KeyBy_.foreach((z) -> System.out.println(z._1.intValue() + " --- " + z._2.getName()));
 		
 		javaSparkContext.close();
 	}

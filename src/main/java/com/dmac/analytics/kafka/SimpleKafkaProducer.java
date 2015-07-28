@@ -13,16 +13,15 @@ public class SimpleKafkaProducer {
 		
 		Properties props = new Properties();
 		
-		props.put("zk.connect", "127.0.0.1:2181");
+		props.put("zk.connect", "localhost:2181");
 		props.put("serializer.class", "kafka.serializer.StringEncoder");
-		props.put("metadata.broker.list", "broker1:9092,broker2:9092");
-		props.put("request.required.acks", "1");
+		props.put("metadata.broker.list", "localhost:9092");
 		
 		ProducerConfig config = new ProducerConfig(props);
 				
 		Producer<String, String> producer = new Producer<String, String>(config);
 		
-		producer.send(new KeyedMessage<String, String>("test", "BUSINESS-MESSAGE"));
+		producer.send(new KeyedMessage<String, String>("Lohith_Topic", "BUSINESS-MESSAGE77777777"));
 		producer.close();
 	}
 }

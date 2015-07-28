@@ -29,4 +29,21 @@ public class ListSource {
 		return listSource;
 	}
 	 
+	
+	public List<String> retrieveListOfStrings() {
+		List<String> listSource = new ArrayList<>();
+		listSource.add("Karikalan");	listSource.add("Turing");
+		listSource.add("Ramanujam");	listSource.add("Nathan Martz");
+		listSource.add("Zeus");			listSource.add("Matei");
+		listSource.add("Ramanujam");	listSource.add("Tatagatha");
+		listSource.add("Karikalan");	listSource.add("Joshua");
+		listSource.add("Feynman");		listSource.add("Shree");
+		listSource.add("Kundera");		listSource.add("Krishnavi");
+		listSource.add("Chola");		listSource.add("Kiruthi");
+		listSource.add("Raja Raja");	listSource.add("Karl");
+		listSource.add("Pallavas");		listSource.add("Marx");
+		listSource.add("Alan"); 		listSource.add("Lenin");
+		listSource.add("Das");			listSource.add("Mao");
+		return listSource;
+	}
 }

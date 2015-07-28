@@ -17,16 +17,14 @@ public class SparkRDDDistinctTransformation {
 		JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConfig);
 
 		// Retrieve the source
-		List<LatLong> locationList = new ListSource().retrieveList();
+		List<String> locationList = new ListSource().retrieveListOfStrings();
 				
 		
 				
 		// RDD can be calculated from an existing collection.
-		JavaRDD<LatLong> locRDD = javaSparkContext.parallelize(locationList);
+		JavaRDD<String> locRDD = javaSparkContext.parallelize(locationList);
 		
-		JavaRDD<LatLong> distinctRDD = locRDD.distinct();
-		
-		
-		distinctRDD.foreach((z) -> System.out.println(z.getId()));
+		JavaRDD<String> distinctRDD = locRDD.distinct();
+		distinctRDD.foreach((outParam) -> System.out.println(outParam));
 	}
 }

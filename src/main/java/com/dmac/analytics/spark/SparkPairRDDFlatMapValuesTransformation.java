@@ -43,7 +43,7 @@ public class SparkPairRDDFlatMapValuesTransformation {
 			
 		});
 		
-		
+				
 		// flatMapValues can be performed over only on PairRDD's
 		JavaPairRDD<Integer, String> flatMapValuesRDD = pairRDD.flatMapValues(new Function<LatLong, Iterable<String>>() {
 
@@ -56,8 +56,10 @@ public class SparkPairRDDFlatMapValuesTransformation {
 		});
 		
 			
-		// TODO: This output doesnt execute. Try it.
-		pairRDD.foreach((z) -> System.out.println(z._1.intValue() + " - " + z._2.getId()));
+		
+		//pairRDD.foreach((z) -> System.out.println(z._1.intValue() + " --- " + z._2.getId()));
+		
+		flatMapValuesRDD.foreach((z) -> System.out.println(z._1.intValue() + " :: " + z._2));
 		
 		javaSparkContext.close();
 	}
