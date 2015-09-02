@@ -18,7 +18,7 @@ public class WordCountUsingSpark {
 		
 		
 		SparkConf sparkConfig = new SparkConf()
-				.setAppName("ReadLogFile")
+				.setAppName("WordCountSparkExample")
 				.setMaster("local[8]");
 
 		JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConfig);
