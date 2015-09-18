@@ -20,7 +20,7 @@ public class SparkReadFile {
 		
 		JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConfig);
 
-		javaSparkContext.textFile("file:///Users/tester/ac/entitlement_view.txt")
+		javaSparkContext.textFile("file:///Users/koteshwar/titanic3.csv")
 						.collect()
 						.forEach(z -> System.out.println(z));
 		
