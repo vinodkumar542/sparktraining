@@ -15,6 +15,10 @@ public class SparkRDDCheckPointing {
 		JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConfig);
 		javaSparkContext.setCheckpointDir("/Users/tester/whitetiger");
 		
+		//javaSparkContext.setCheckpointDir("/Users/tester/whitetiger");
+		//javaSparkContext.checkpointFile("/Users/tester/whitetiger");
+		
+		
 		JavaRDD<String> locRDD = javaSparkContext.textFile("file:///Users/tester/ac/entitlement_view.csv");
 		
 		
