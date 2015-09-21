@@ -120,6 +120,7 @@ public class DecisionTrees {
 
 		dtm.save(sc.sc(), "myModelPath");
 		DecisionTreeModel sameModel = DecisionTreeModel.load(sc.sc(), "myModelPath");
+		//dtm.predict(features);
 		
 	}
 	

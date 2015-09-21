@@ -35,6 +35,8 @@ public class SparkStreaming {
 			}
 		});
 		 
+		 
+		
 		pairDStream.print();
 		jsc.start();
 		jsc.awaitTermination();
