@@ -61,7 +61,7 @@ public class SparkDataFrames {
 		
 		SQLContext sqlContext = new SQLContext(javaSparkContext);
 		DataFrame df = sqlContext.read().json("file:///Users/koteshwar/world_bank.json");
-		
+
 		//df.printSchema();
 		df.show();
 		

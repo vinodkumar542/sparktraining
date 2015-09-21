@@ -1,32 +1,30 @@
 package com.dmac.analytics.spark;
 
-import java.util.List;
-
 import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function;
 
-public class SparkRDDTakeAction {
+public class SparkPipeTransformation {
 
-public static void main(String[] args) {
-
+	public static void main(String[] args) {
 	
 		
+
 		SparkConf sparkConfig = new SparkConf()
-									.setAppName("UNDataRead")
-									.setMaster("local[8]");
+				.setAppName("ReadCSVFile")
+				.setMaster("local[8]");
+				
 
 		JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConfig);
 		
 		JavaRDD<String> rdd = javaSparkContext.textFile("file:///Users/apple/undata1.csv");
+
+		rdd.pipe("ls -l").foreach(param -> System.out.println(param));
 		
-		// The take action returns in the first five rows of the RDD on which it is operated.
-		List<String> firstFiveRows = rdd.take(5);
 		
-		
-		firstFiveRows.forEach(z -> System.out.println(z));
-		
-		javaSparkContext.close();
 		
 	}
+
 }

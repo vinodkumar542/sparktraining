@@ -16,11 +16,11 @@ public class SparkRDDPersistAndCache {
 		
 		JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConfig);
 
-		JavaRDD<String> rdd = javaSparkContext.textFile("file:///Users/tester/ac/entitlement_view.csv");
+		JavaRDD<String> rdd = javaSparkContext.textFile("file:///Users/apple/undata1.csv");
 		
 		
 		// Caching is nothing but the StorageLevel.MEMORY_ONLY()
-		//rdd.cache();
+		JavaRDD<String> cachedRDD = rdd.cache();
 		
 		//JavaRDD<String> persistedRDD = rdd.persist(StorageLevel.MEMORY_ONLY());
 		JavaRDD<String> persistedRDD = rdd.persist(StorageLevel.DISK_ONLY());

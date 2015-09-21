@@ -5,7 +5,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 
 
 
-public class SparkReadFile {
+public class Sample {
 	
 	
 	
@@ -21,8 +21,8 @@ public class SparkReadFile {
 		JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConfig);
 
 		javaSparkContext.textFile("file:///Users/apple/titanic3.csv")
-						//.foreach(System.out::println);
-						.foreach(z -> System.out.println(z));
+						.sample(false, 0.1)
+						.foreach(param -> System.out.println(param));
 		
 		javaSparkContext.close();
 		javaSparkContext.stop();

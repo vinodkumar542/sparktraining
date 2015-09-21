@@ -21,7 +21,7 @@ public class SparkRDDCollect {
 		
 		JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConfig);
 
-		JavaRDD<String> rdd = javaSparkContext.textFile("file:///Users/tester/ac/entitlement_view.csv");
+		JavaRDD<String> rdd = javaSparkContext.textFile("file:///Users/apple/undata1.csv");
 		
 
 		List<String> listOfRows = rdd.collect();

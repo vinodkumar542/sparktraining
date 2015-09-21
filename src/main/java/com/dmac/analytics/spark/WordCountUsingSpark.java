@@ -23,14 +23,14 @@ public class WordCountUsingSpark {
 
 		JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConfig);
 
-		JavaRDD<String> textRDD = javaSparkContext.textFile("file:///Users/tester/ac/entitlement_view.txt");
+		JavaRDD<String> textRDD = javaSparkContext.textFile("file:///Users/apple/simple_text_file.txt");
 
 		
 		JavaRDD<String> wordsFlattenedRDD = textRDD.flatMap(new FlatMapFunction<String, String>() {
 
 			@Override
 			public Iterable<String> call(String input) throws Exception {
-				return Arrays.asList(input);
+				return Arrays.asList(input.split(" "));
 			}
 			
 		});
@@ -53,7 +53,7 @@ public class WordCountUsingSpark {
 			}
 		});
 		
-		countedWords.foreach((words) -> System.out.println(words._1 + words._2));
+		countedWords.foreach((words) -> System.out.println(words._1 +  " " + words._2));
 		
 		
 		
@@ -61,10 +61,10 @@ public class WordCountUsingSpark {
 		
 		
 		
-		textRDD.flatMap(param -> Arrays.asList(param))
+		textRDD.flatMap(param -> Arrays.asList(param.split(" ")))
 				.mapToPair(param -> new Tuple2<String, Integer>(param, 1))
 				.reduceByKey((integerParam1, integerParam2) -> new Integer(integerParam1 + integerParam2))
-				.foreach((words) -> System.out.println(words._1 + words._2));
+				.foreach((words) -> System.out.println(words._1 + " " + words._2)); 
 
 	}
 

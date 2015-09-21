@@ -13,39 +13,27 @@ public class SparkRDDCheckPointing {
 		.setMaster("local[8]");
 
 		JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConfig);
-		javaSparkContext.setCheckpointDir("/Users/tester/whitetiger");
+		javaSparkContext.setCheckpointDir("/Users/apple/checkpointdir");
 		
 		//javaSparkContext.setCheckpointDir("/Users/tester/whitetiger");
 		//javaSparkContext.checkpointFile("/Users/tester/whitetiger");
 		
 		
-		JavaRDD<String> locRDD = javaSparkContext.textFile("file:///Users/tester/ac/entitlement_view.csv");
+		JavaRDD<String> locRDD = javaSparkContext.textFile("file:///Users/apple/titanic3.csv");
 		
 		
 		JavaRDD<String> locRDDUnion = locRDD.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
-		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD)	  
 		.union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD).union(locRDD);
 		
-		locRDDUnion.persist(StorageLevel.DISK_ONLY());
+		//locRDDUnion.persist(StorageLevel.DISK_ONLY());
 		locRDDUnion.checkpoint();
+	
+		JavaRDD<String> locRDDUnion2 = locRDDUnion.union(locRDDUnion).union(locRDDUnion).union(locRDDUnion).union(locRDDUnion).union(locRDDUnion).union(locRDDUnion).
+		union(locRDDUnion).union(locRDDUnion).union(locRDDUnion).union(locRDDUnion).union(locRDDUnion).union(locRDDUnion).union(locRDDUnion).
+		union(locRDDUnion).union(locRDDUnion).union(locRDDUnion).union(locRDDUnion).union(locRDDUnion).union(locRDDUnion).union(locRDDUnion).union(locRDDUnion).
+		union(locRDDUnion).union(locRDDUnion).union(locRDDUnion);
 		
-		locRDDUnion.foreach((z) -> System.out.println(z));
+		
+		locRDDUnion2.foreach((z) -> System.out.println(z));
 	}
 }
