@@ -17,7 +17,7 @@ public class SparkReadFile {
 		
 		JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConfig);
 
-		javaSparkContext.textFile("file:///E:/ac/spark/code/sparktraining/data/titanic3.csv")
+		javaSparkContext.textFile("file:///C:/ac/spark/code/sparktraining/data/titanic3.csv")
 						//.foreach(System.out::println);
 						.foreach(z -> System.out.println(z));
 		
