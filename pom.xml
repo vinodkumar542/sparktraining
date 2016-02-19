@@ -140,6 +140,12 @@
 	  <artifactId>flink-clients</artifactId>
 	  <version>0.10.1</version>
 	</dependency>
+	
+	<dependency>
+		<groupId>org.apache.solr</groupId>
+		<artifactId>solr-solrj</artifactId>
+		<version>5.4.1</version>
+	</dependency>
 
   </dependencies>
 </project>
