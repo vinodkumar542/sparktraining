@@ -17,9 +17,18 @@ public class SparkCassandra {
 	        
 		 CassandraConnector connector = CassandraConnector.apply(conf);
 		 Session session = connector.openSession();
-		 session.execute("CREATE KEYSPACE uidai WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 3}");
-		 session.execute("CREATE TABLE uidai.resident_detail (id INT PRIMARY KEY, name TEXT)");	 
+		 //session.execute("CREATE KEYSPACE uidai WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 3}");
+		 //session.execute("CREATE TABLE uidai.resident_detail (id INT PRIMARY KEY, name TEXT)");
+		 
+		 session.execute("insert into uidai.otp (uid, otp) VALUES (17777536, '777')");
+		 
 		 session.close();
 	}
 
 }
+
+
+
+
+
+
