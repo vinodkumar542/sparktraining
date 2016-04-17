@@ -25,6 +25,7 @@ public class SparkRDDMapPartitions {
 		JavaRDD<String> rdd = javaSparkContext.textFile("file:///Users/tester/ac/entitlement_view.csv", 5);
 	
 		
+	
 		JavaRDD<Integer> partitionRDD = rdd.mapPartitions(new FlatMapFunction<Iterator<String>, Integer>() {
 
 			@Override

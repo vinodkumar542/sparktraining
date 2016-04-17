@@ -17,9 +17,15 @@ public class SparkReadFile {
 		
 		JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConfig);
 
-		javaSparkContext.textFile("file:///C:/ac/spark/code/sparktraining/data/titanic3.csv")
-						//.foreach(System.out::println);
-						.foreach(z -> System.out.println(z));
+		
+//		javaSparkContext.textFile("file:///C:/ac/spark/code/sparktraining/data/titanic3.csv")
+//						//.foreach(System.out::println);
+//						.foreach(eachLine -> System.out.println(eachLine));
+		
+		
+		
+		javaSparkContext.wholeTextFiles("file:///C:/ac/spark/code/sparktraining/data")
+						.foreach(eachLine -> System.out.println(eachLine._1));
 		
 		javaSparkContext.close();
 		javaSparkContext.stop();

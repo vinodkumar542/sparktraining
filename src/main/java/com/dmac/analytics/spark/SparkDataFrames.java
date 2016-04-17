@@ -50,9 +50,11 @@ public class SparkDataFrames {
 	
 	public static void main(String args[])
 	{
-			SparkConf sparkConfig = new SparkConf()
-			.setAppName("ReadLogFile")
-			.setMaster("local[5]");
+		
+		
+		SparkConf sparkConfig = new SparkConf()
+											.setAppName("SparkDataFrames")
+											.setMaster("local[5]");
 			
 			//.setMaster("spark://SCHMAC-TESTER-4.local:7077");
 			//.setMaster("spark://52.24.58.38:7077");

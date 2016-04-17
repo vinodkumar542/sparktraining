@@ -20,9 +20,14 @@ public class SparkRDDMap {
 		JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConfig);
 
 		// 5 is the number of partitions
-		JavaRDD<String> rdd = javaSparkContext.textFile("file:///Users/apple/undata1.csv");
+		JavaRDD<String> rdd = javaSparkContext.textFile("file:///C:/ac/spark/code/sparktraining/data/undata1.csv");
 		
 
+		/**
+		 * 1,2,3 all are same
+		 * 
+		 */
+		// 1
 		JavaRDD<UNDataBean> lcRDD = rdd.map(new Function<String, UNDataBean>() {
 									
 														@Override
@@ -37,6 +42,24 @@ public class SparkRDDMap {
 															return undata;
 														}
 													});
+		
+		// 2
+		JavaRDD<UNDataBean> undataBeanconverterRDD = rdd.map(new UNBeanConverterFunction());
+			
+		// 3
+		JavaRDD<UNDataBean> undataBeanRDD = rdd.map((each) -> {			
+			
+				String[] splitColumns = each.split(",");
+	
+				UNDataBean undata = new UNDataBean();
+				undata.setCountry(splitColumns[0]);
+				undata.setCommodityCode(splitColumns[2]);
+				undata.setCommodity(splitColumns[3]);
+				return undata;	
+		});
+
+		
+		undataBeanRDD.collect();
 		
 		
 		JavaRDD<String> countryNamesRDD = rdd.map(new Function<String, String>() {
@@ -56,7 +79,7 @@ public class SparkRDDMap {
 		//lcRDD.saveAsTextFile("/Users/apple/saver002");
 		//lcRDD.saveAsObjectFile("/Users/apple/saverzz");
 		
-		countryNamesRDD.saveAsTextFile("/Users/apple/countryNamesSaver");
+		//countryNamesRDD.saveAsTextFile("/Users/apple/countryNamesSaver");
 		
 		javaSparkContext.close();
 		javaSparkContext.stop();
@@ -64,4 +87,25 @@ public class SparkRDDMap {
 	}
 }
 
+class UNBeanConverterFunction implements Function<String, UNDataBean> {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+
+	@Override
+	public UNDataBean call(String input) throws Exception {
+		
+		String[] splitColumns = input.split(",");
+
+		UNDataBean undata = new UNDataBean();
+		undata.setCountry(splitColumns[0]);
+		undata.setCommodityCode(splitColumns[2]);
+		undata.setCommodity(splitColumns[3]);
+		return undata;
+	}
+	
+}
 
