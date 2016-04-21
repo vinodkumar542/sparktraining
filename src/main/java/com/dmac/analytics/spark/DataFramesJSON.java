@@ -17,7 +17,8 @@ public class DataFramesJSON {
 		JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConfig);
 
 		SQLContext sc = new SQLContext(javaSparkContext);
-		DataFrame df = sc.read().json("file:///Users/tester/ac/ycy.json");
+		DataFrame df = sc.read().json("file:///Users/tester/ac/world_bank.json");
+		df.select("");
 		df.printSchema();
 	}
 }

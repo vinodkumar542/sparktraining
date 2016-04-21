@@ -143,6 +143,13 @@
 	</dependency>
 	
 	<dependency>
+		<groupId>com.datastax.spark</groupId>
+		<artifactId>spark-cassandra-connector-java_2.10</artifactId>
+		<version>1.6.0-M1</version>
+	</dependency>
+	
+	
+	<dependency>
 	    <groupId>amplab</groupId>
 	    <artifactId>succinct</artifactId>
 	    <version>0.1.6</version>
